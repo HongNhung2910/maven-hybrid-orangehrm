@@ -1,4 +1,4 @@
-package pageUIs.admin;
+package pageUIs;
 
 public class LoginPageUI {
 }
