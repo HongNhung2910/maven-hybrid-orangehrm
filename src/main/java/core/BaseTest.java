@@ -25,7 +25,7 @@ public class BaseTest {
                 throw new RuntimeException("Browser is not valid");
         }
         driver.get(appURL);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();
         return driver;
 
