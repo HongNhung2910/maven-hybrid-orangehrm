@@ -2,6 +2,7 @@ package pageObjects;
 
 import core.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageObjects.PageGeneratorManager;
 import pageUIs.AddEmployeePageUI;
 
 public class AddEmployeePageObject extends BasePage {
@@ -26,8 +27,12 @@ public class AddEmployeePageObject extends BasePage {
         return getElementText(driver,AddEmployeePageUI.EMPLOYEE_ID_TEXTBOX);
     }
 
-    public void clickToSaveButton() {
+    public PersonalDetailPageObject clickToSaveButton() {
         waitElementClickable(driver,AddEmployeePageUI.SAVE_BUTTON);
         clickToElement(driver,AddEmployeePageUI.SAVE_BUTTON);
+        waitListElementInvisible(driver, AddEmployeePageUI.SPINNER_ICON);
+      //  return new PersonalDetailPageObject(driver);
+      //  return PageGeneratorManager.getPersonalDetailPage(driver);
+        return PageGeneratorGeneric.getPage(PersonalDetailPageObject.class,driver);
     }
 }

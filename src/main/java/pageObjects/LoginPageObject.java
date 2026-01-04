@@ -2,6 +2,7 @@ package pageObjects;
 
 import core.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageObjects.PageGeneratorManager;
 import pageUIs.LoginPageUI;
 
 public class LoginPageObject extends BasePage {
@@ -20,9 +21,12 @@ public class LoginPageObject extends BasePage {
         sendKeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX,password);
     }
 
-    public void clickToLoginButton() {
+    public DashboardPageObject clickToLoginButton() {
         waitElementClickable(driver,LoginPageUI.LOGIN_BUTTON);
         clickToElement(driver,LoginPageUI.LOGIN_BUTTON);
+        //return new DashboardPageObject(driver);
+        //return PageGeneratorManager.getDashboardPage(driver);
+        return PageGeneratorGeneric.getPage(DashboardPageObject.class,driver);
 
     }
 }
