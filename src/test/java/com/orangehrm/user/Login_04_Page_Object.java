@@ -7,7 +7,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.*;
+import pageObjects.orangeHRM.AddEmployeePageObject;
+import pageObjects.orangeHRM.DashboardPageObject;
+import pageObjects.orangeHRM.EmployeeListPageObject;
+import pageObjects.orangeHRM.LoginPageObject;
+import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
 
 public class Login_04_Page_Object extends BaseTest {
 
@@ -45,7 +49,7 @@ public class Login_04_Page_Object extends BaseTest {
         addEmployeePage.enterToLastNameTextbox(employeeLastName);
         employeeID= addEmployeePage.getEmployeeID();
 
-        addEmployeePage=clickSaveToButton();
+       // addEmployeePage=clickSaveToButton();
         personalDetailPage=new PersonalDetailPageObject(driver);
         Assert.assertTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
 
@@ -54,9 +58,6 @@ public class Login_04_Page_Object extends BaseTest {
         Assert.assertEquals(personalDetailPage.getEmployeeIDTextboxValue(),employeeID);
     }
 
-    private AddEmployeePageObject clickSaveToButton() {
-        return null;
-    }
 
 
     @AfterClass

@@ -1,4 +1,4 @@
-package pageUIs;
+package pageUIs.orangeHRM;
 
 public class AddEmployeePageUI {
     public static final String FIRST_NAME_TEXTBOX="//input[@name()='firstName']";

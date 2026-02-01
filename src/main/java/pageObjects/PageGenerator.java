@@ -5,10 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 import java.lang.reflect.Constructor;
 
-public class PageGeneratorGeneric {
-    public static LoginPageObject getLoginPage(WebDriver driver) {
-        return new LoginPageObject(driver);
-    }
+public class PageGenerator {
+
     public static <T extends BasePage> T getPage(Class<T> pageClass, WebDriver driver){
         try{
             //Lấy contructor nhận Webdriver

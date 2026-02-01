@@ -1,14 +1,14 @@
-package pageObjects;
+package pageObjects.orangeHRM.editNavigation;
 
-import core.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.PersonalDetailPageUI;
+import pageUIs.orangeHRM.editNavigation.PersonalDetailPageUI;
 
-public class PersonalDetailPageObject extends BasePage {
+public class PersonalDetailPageObject extends EditNavigatorPageObject {
 
     private WebDriver driver;
 
     public PersonalDetailPageObject(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
     public String getFirstNameTextboxValue() {
@@ -25,6 +25,5 @@ public class PersonalDetailPageObject extends BasePage {
         waitElementVisible(driver, PersonalDetailPageUI.EMPLOYEE_ID_TEXTBOX);
         return getElementDOMProperty(driver,PersonalDetailPageUI.EMPLOYEE_ID_TEXTBOX,"value");
     }
-
 
 }

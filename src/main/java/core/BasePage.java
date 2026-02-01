@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.Select;
+import pageObjects.PageGenerator;
+import pageObjects.openCart.admin.AdminLoginPO;
+import pageObjects.openCart.user.UserHomePO;
 import pageUIs.BasePageUI;
 
 import java.time.Duration;
@@ -324,12 +327,7 @@ public class BasePage {
     public List<WebElement> waitListElementPresence(WebDriver driver, String locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXPath(locator)));
     }
-
-    private final int SHORT_TIMEOUT = 15;
-    private final int LONG_TIMEOUT = 30;
-
     private void sleepInSecond(){
-
     }
 
     public WebElement getWebElement(String locator){
@@ -340,10 +338,55 @@ public class BasePage {
         driver.findElement(By.cssSelector("")).click();
     }
 
+    public void openUrlByNewTAB(WebDriver driver,String url){
+        driver.switchTo().newWindow(WindowType.TAB).get(url);
+    }
+
+    public void openUrlByNewWindow(WebDriver driver,String url){
+        driver.switchTo().newWindow(WindowType.WINDOW).get(url);
+    }
+
+    public String getCurrentWindowID(WebDriver driver){
+        return  driver.getWindowHandle();
+    }
+
     public boolean isLoadingSpinnerDisappear(WebDriver driver){
         return  waitListElementInvisible(driver, BasePageUI.SPINNER_ICON);
+    }
 
+    public UserHomePO clickToLogoutLinkAtUserSite(WebDriver driver) {
+
+        waitElementClickable(driver,BasePageUI.USER_MY_ACCOUNT_HEADER);
+        clickToElement(driver,BasePageUI.USER_MY_ACCOUNT_HEADER);
+
+        waitElementClickable(driver,BasePageUI.USER_LOGOUT_LINK_ITEM);
+        clickToElement(driver,BasePageUI.USER_LOGOUT_LINK_ITEM);
+
+        return PageGenerator.getPage(UserHomePO.class,driver);
+    }
+
+    public AdminLoginPO ClickToLogoutLinkAtAdminSite(WebDriver driver) {
+        waitElementClickable(driver,BasePageUI.ADMIN_LOGOUT_LINK_ITEM);
+        clickToElement(driver,BasePageUI.ADMIN_LOGOUT_LINK_ITEM);
+
+        return PageGenerator.getPage(AdminLoginPO.class,driver);
+    }
+    public AdminLoginPO openAdminSite(WebDriver driver,String adminURL) {
+        openPageUrl(driver,adminURL);
+        return PageGenerator.getPage(AdminLoginPO.class,driver);
+    }
+
+    public UserHomePO openUserSite(WebDriver driver, String userURL) {
+        openPageUrl(driver,userURL);
+        return PageGenerator.getPage(UserHomePO.class,driver);
+    }
+    public UserHomePO openHomeLogo(WebDriver driver){
+        waitElementClickable(driver,BasePageUI.USER_HOME_LOGO);
+        clickToElement(driver,BasePageUI.USER_HOME_LOGO);
+        return PageGenerator.getPage(UserHomePO.class,driver);
     }
 
 
+    private final int SHORT_TIMEOUT = 15;
+    private final int LONG_TIMEOUT = 30;
 }

@@ -1,9 +1,9 @@
-package pageObjects;
+package pageObjects.orangeHRM;
 
 import core.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageObjects.PageGeneratorManager;
-import pageUIs.DashboardPageUI;
+import pageObjects.PageGenerator;
+import pageUIs.orangeHRM.DashboardPageUI;
 
 public class DashboardPageObject extends BasePage {
     private WebDriver driver;
@@ -17,6 +17,6 @@ public class DashboardPageObject extends BasePage {
         clickToElement(driver,DashboardPageUI.PIM_MODULE);
         //return new EmployeeListPageObject(driver);
         //return PageGeneratorManager.getEmployeeListPage(driver);
-        return PageGeneratorGeneric.getPage(EmployeeListPageObject.class,driver);
+        return PageGenerator.getPage(EmployeeListPageObject.class,driver);
     }
 }

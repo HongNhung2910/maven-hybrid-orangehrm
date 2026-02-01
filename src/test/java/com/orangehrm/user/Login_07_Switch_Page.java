@@ -9,10 +9,13 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
 import pageObjects.orangeHRM.*;
+import pageObjects.orangeHRM.editNavigation.ContactDetailPageObject;
+import pageObjects.orangeHRM.editNavigation.DependentsPageObject;
+import pageObjects.orangeHRM.editNavigation.JobPageObject;
 import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
 
 
-public class Login_06_Page_Manager_IV extends BaseTest {
+public class Login_07_Switch_Page extends BaseTest {
 
     @Parameters({"appUrl", "browser"})
     @BeforeClass
@@ -55,6 +58,23 @@ public class Login_06_Page_Manager_IV extends BaseTest {
         Assert.assertEquals(personalDetailPage.getEmployeeIDTextboxValue(), employeeID);
     }
 
+    @Test
+    public void Employee_02_Switch_Page(){
+        contactDetailPage=personalDetailPage.openContactDetailPage(driver);
+
+        jobPage=contactDetailPage.openJobPage(driver);
+
+        dependentsPage=jobPage.openDependentPage(driver);
+
+        personalDetailPage=dependentsPage.openPersonalDetailPage(driver);
+
+        jobPage=personalDetailPage.openJobPage(driver);
+
+        contactDetailPage=jobPage.openContactDetailPage(driver);
+
+        dependentsPage=contactDetailPage.openDependentPage(driver);
+    }
+
 
     @AfterClass
     public void afterClass() {
@@ -67,5 +87,8 @@ public class Login_06_Page_Manager_IV extends BaseTest {
     private EmployeeListPageObject employeeListPage;
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailPageObject personalDetailPage;
+    private ContactDetailPageObject contactDetailPage;
+    private JobPageObject jobPage;
+    private DependentsPageObject dependentsPage;
     private String employeeID, adminUserName, adminPassword, employeeFirstName, employeeLastName;
 }

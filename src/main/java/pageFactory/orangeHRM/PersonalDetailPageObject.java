@@ -1,4 +1,4 @@
-package pageFactory;
+package pageFactory.orangeHRM;
 
 import core.BasePageFactory;
 import org.openqa.selenium.WebDriver;
@@ -8,47 +8,39 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class AddEmployeePageObject extends BasePageFactory {
+public class PersonalDetailPageObject extends BasePageFactory {
+
     private WebDriver driver;
 
-    @FindBy (xpath = "//input[@name()='firstName']")
+    @FindBy(name = "firstname")
     private WebElement firstNameTextbox;
 
-    @FindBy (xpath = "//input[@name()='lastName']")
+    @FindBy (name = "lastname")
     private WebElement lastNameTextbox;
 
     @FindBy (xpath = "//label[text()='Employee Id']/parent::div/following=sibling::div/input")
     private WebElement employeeIDTextbox;
 
-    @FindBy (xpath = "//button[contrains(string(),'Save')]")
-    private WebElement saveBtn;
-
     @FindBy (xpath = "//div[@class='oxd-loading-spinner']")
     private List<WebElement> loadingSpinner;
 
-    public AddEmployeePageObject(WebDriver driver) {
+    public PersonalDetailPageObject(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
-
-    public void enterToFirstNameTextbox(String firstName) {
+    public String getFirstNameTextboxValue() {
         waitElementInvisible(driver,firstNameTextbox);
-        sendKeyToElement(firstNameTextbox,firstName);
+        return getElementDOMProperty(firstNameTextbox,"value");
     }
 
-    public void enterToLastNameTextbox(String lastName) {
+    public String getLastNameTextboxValue() {
         waitElementInvisible(driver,lastNameTextbox);
-        sendKeyToElement(lastNameTextbox,lastName);
+        return getElementDOMProperty(lastNameTextbox,"value");
     }
 
-    public String getEmployeeID() {
+    public String getEmployeeIDTextboxValue() {
         waitElementInvisible(driver,employeeIDTextbox);
-       return getElementDOMProperty(employeeIDTextbox,"value");
-    }
-
-    public void clickToSaveButton() {
-        waitElementClickable(driver,saveBtn);
-        clickToElement(saveBtn);
+        return getElementDOMProperty(employeeIDTextbox,"value");
     }
 
     public boolean isLoadingSpinnerDisappear(){

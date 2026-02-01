@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.time.Duration;
+import java.util.Random;
 
 public class BaseTest {
     private WebDriver driver;
@@ -28,6 +28,20 @@ public class BaseTest {
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();
         return driver;
+       }
 
+    protected void closeBrowser() {
+        if (!(null == driver)) {
+            driver.quit();
+        }
+    }
+    protected void closeBrowser(WebDriver driver) {
+        if (!(null == driver)) {
+            driver.quit();
+        }
+    }
+
+    protected int getRandomNumber(){
+        return new Random().nextInt(99999);
     }
 }
