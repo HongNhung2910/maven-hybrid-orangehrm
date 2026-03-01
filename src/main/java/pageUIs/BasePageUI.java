@@ -1,12 +1,15 @@
 package pageUIs;
 
 public class BasePageUI {
-    public static final String SPINNER_ICON="//div[@class='oxd-loading-spinner']";
+    public static final String SPINNER_ICON="XPath=//div[@class='oxd-loading-spinner']";
 
     //opencart
-    public static final String USER_MY_ACCOUNT_HEADER ="//nav[@id='top']//span[text()='My Account']";
-    public static final String USER_LOGOUT_LINK_ITEM ="//a[@class='dropdown_item' and text()='Logout']";
-    public static final String ADMIN_LOGOUT_LINK_ITEM ="//li[@id='nav_logout]//span[text()='Logout']";
-    public static final String USER_HOME_LOGO ="//div[@id='logo']/a";
+    public static final String USER_MY_ACCOUNT_HEADER ="XPath=//nav[@id='top']//span[text()='My Account']";
+    public static final String USER_LOGOUT_LINK_ITEM ="XPath=//a[@class='dropdown_item' and text()='Logout']";
+    public static final String ADMIN_LOGOUT_LINK_ITEM ="XPath=//li[@id='nav_logout]//span[text()='Logout']";
+    public static final String USER_HOME_LOGO ="XPath=//div[@id='logo']/a";
+
+    //JQuery
+    public static final String UPLOAD_FILE_TYPE="css=input[type='file']";
 
 }

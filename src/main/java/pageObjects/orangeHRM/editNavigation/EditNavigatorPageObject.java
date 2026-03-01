@@ -36,4 +36,29 @@ public class EditNavigatorPageObject extends BasePage {
         return PageGenerator.getPage(ContactDetailPageObject.class,driver);
     }
 
+    public EditNavigatorPageObject openEditNavigatorPageName(String pageName){
+        waitElementClickable(driver, EditNavigatorPageUI.DYNAMIC_LINK_BY_PAGE_NAME,pageName);
+        clickToElement(driver, EditNavigatorPageUI.DYNAMIC_LINK_BY_PAGE_NAME,pageName);
+
+        switch (pageName){
+            case "Personal Details":
+                return PageGenerator.getPage(PersonalDetailPageObject.class,driver);
+            case "Dependents":
+                return PageGenerator.getPage(DependentsPageObject.class,driver);
+            case "Contact Details":
+                return PageGenerator.getPage(ContactDetailPageObject.class,driver);
+            case "Job":
+                return PageGenerator.getPage(JobPageObject.class,driver);
+            default:
+                throw new IllegalArgumentException("Page name is not valid :" + pageName);
+        }
+
+    }
+
+    public void openEditNavigatorByName(String pageName){
+        waitElementClickable(driver, EditNavigatorPageUI.DYNAMIC_LINK_BY_PAGE_NAME,pageName);
+        clickToElement(driver, EditNavigatorPageUI.DYNAMIC_LINK_BY_PAGE_NAME,pageName);
+    }
+
+
 }
