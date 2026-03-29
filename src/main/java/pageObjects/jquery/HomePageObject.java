@@ -5,9 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pageUIs.jquery.HomePageUI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageObject extends BasePage {
+    /*
     public HomePageObject(WebDriver driver){
         this.driver = driver;
     }
@@ -75,7 +77,7 @@ public class HomePageObject extends BasePage {
     }
 
     public List<String> getColumnAllValueByColumnName(String columnName) {
-        List<WebElement> allPage = getListElement(driver, HomePageUI.ALL_PAGE);
+       // List<WebElement> allPage = getListElement(driver, HomePageUI.ALL_PAGE);
         List<String> columnAllValue = new ArrayList<String>();
 
         waitListElementVisible(driver, HomePageUI.DYNAMIC_INDEX_BY_COLUMN_NAME, columnName);
@@ -112,5 +114,5 @@ public class HomePageObject extends BasePage {
     }
 
 
-
+*/
 }

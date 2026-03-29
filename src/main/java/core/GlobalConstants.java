@@ -6,6 +6,7 @@ public class GlobalConstants {
     //System info
     public static final String PROJECT_PATH = System.getProperty("user.dir");
     public static final String OS_NAME = System.getProperty("os.name");
+    public static final String JAVA_VERSION =  System.getProperty("java.version");
 
     //user
     public static final String DEV_USER_URL = "http://localhost:88/opencart/upload/";
@@ -33,10 +34,11 @@ public class GlobalConstants {
 
     //html report folder
     public static final String REPORTING_PATH = PROJECT_PATH + File.separator + "htmlReportNG" + File.separator;
-    public static final String EXTENT_PATH = PROJECT_PATH + File.separator + "htmlExtent" + File.separator;
+    public static final String EXTENT_PATH = PROJECT_PATH + File.separator + "htmlReport" + File.separator;
     public static final String ALLURE_PATH = PROJECT_PATH + File.separator + "htmlAllure" + File.separator;
 
     //data test, environment
     public static final String DATA_TEST_PATH = PROJECT_PATH + File.separator + "dataTest" + File.separator;
     public static final String ENVIRONMENT_CONFIG_PATH = PROJECT_PATH + File.separator + "environmentConfig" + File.separator;
+
 }

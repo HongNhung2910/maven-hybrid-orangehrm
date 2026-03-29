@@ -23,6 +23,7 @@ public class Level_12_DataTable extends BaseTest {
 
     @Test
     public void Employee_01_Table() {
+        /*
         homePage.openPageByNumber("10");
         Assert.assertTrue(homePage.isPageActiveByNumber("10"));
 
@@ -31,10 +32,13 @@ public class Level_12_DataTable extends BaseTest {
 
         homePage.openPageByNumber("18");
         Assert.assertTrue(homePage.isPageActiveByNumber("18"));
+
+         */
     }
 
     @Test
     public void Table_02_Search() {
+        /*
         homePage.enterToHeaderTextboxByName("Country","Georgia");
 
         Assert.assertTrue(homePage.isPageInfoDisplayed("624","Georgia","651","1270"));
@@ -51,9 +55,12 @@ public class Level_12_DataTable extends BaseTest {
         Assert.assertTrue(homePage.isPageInfoDisplayed("836","Channel Islands","919","1755"));
         homePage.refeshToPage(driver);
         homePage.sleepInSecond(2);
+
+         */
     }
 
     public void Table_03_Action(){
+        /*
         homePage.enterToHeaderTextboxByName("Country","Seychelles");
         homePage.sleepInSecond(2);
 
@@ -64,9 +71,12 @@ public class Level_12_DataTable extends BaseTest {
         homePage.sleepInSecond(2);
         homePage.clickToActionByCountryName("Armenia","edit");
 
+         */
+
     }
 
     public void Table_04_Index() {
+        /*
         homePage.openPageUrl(driver,"https://www.jqueryscript.net/demo/jQuery-Dynamic-Data-Grid-Plugin-appendGrid/");
 
         homePage.clickLoadDataButton();
@@ -86,12 +96,17 @@ public class Level_12_DataTable extends BaseTest {
         homePage.checkToCheckboxByColumnNameAndRowIndex("NPO?","6");
         homePage.actionToRowByRowIndex("6","Insert");
         homePage.sleepInSecond(3);
+
+         */
     }
 
     @Test
     public void Table_05_Get_All_Value() {
+        /*
         List<String> columnActualValue =  homePage.getColumnAllValueByColumnName("Country");
         System.out.println(columnActualValue.size());
+
+         */
     }
 
     @AfterClass

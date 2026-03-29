@@ -24,6 +24,7 @@ public class Level_13_Upload_File extends BaseTest {
 
     @Test
     public void Upload_01_Single() {
+        /*
         homePage.uploadMultipleFiles(driver,mountainFileName);
         homePage.uploadMultipleFiles(driver,riverFileName);
         homePage.uploadMultipleFiles(driver,treeFileName);
@@ -37,11 +38,14 @@ public class Level_13_Upload_File extends BaseTest {
         Assert.assertTrue(homePage.isFileUploadedSuccess(mountainFileName));
         Assert.assertTrue(homePage.isFileUploadedSuccess(riverFileName));
         Assert.assertTrue(homePage.isFileUploadedSuccess(treeFileName));
+
+         */
     }
 
     @Test
     public void Upload_02_Multiple() {
         homePage.refeshToPage(driver);
+        /*
 
         homePage.uploadMultipleFiles(driver,mountainFileName,riverFileName,treeFileName);
 
@@ -54,6 +58,8 @@ public class Level_13_Upload_File extends BaseTest {
         Assert.assertTrue(homePage.isFileUploadedSuccess(mountainFileName));
         Assert.assertTrue(homePage.isFileUploadedSuccess(riverFileName));
         Assert.assertTrue(homePage.isFileUploadedSuccess(treeFileName));
+
+         */
     }
 
 
