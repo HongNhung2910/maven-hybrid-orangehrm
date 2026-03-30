@@ -349,10 +349,22 @@ public class BasePage {
         return getWebElement(driver, castParameter(locator,restValue)).isSelected();
     }
 
+    public Set<Cookie> getPageCookies(WebDriver driver){
 
+        return driver.manage().getCookies();
+    }
+
+    public void setPageCookies(WebDriver driver,Set<Cookie> cookies){
+        for (Cookie cookie : cookies){
+            driver.manage().addCookie(cookie);
+        }
+        sleepInSecond(3);
+    }
     public boolean isElementEnable(WebDriver driver, String locator) {
         return getWebElement(driver, locator).isEnabled();
     }
+
+
 
     public void switchToFrame(WebDriver driver, String locator) {
         driver.switchTo().frame(getWebElement(driver, locator));
