@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import pageFactory.orangeHRM.*;
 
 
-public class Login_05_Page_Factory extends BaseTest {
+public class Level_05_Page_Factory extends BaseTest {
 
     @Parameters({"appUrl","browser"})
     @BeforeClass

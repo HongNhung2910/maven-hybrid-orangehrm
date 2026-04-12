@@ -114,7 +114,7 @@ public class Level_19_Element_Undisplayed extends BaseTest {
 
     @AfterClass
     public void afterClass() {
-        //driver.quit();
+        closeBrowser();
     }
 
     private WebDriver driver;

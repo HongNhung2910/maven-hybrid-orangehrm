@@ -3,16 +3,13 @@ package com.orangehrm.user;
 import core.BasePage;
 import core.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
-public class Login_03_Multiple_Browser extends BaseTest {
+public class Level_03_Multiple_Browser extends BaseTest {
     private WebDriver driver;
     private BasePage basePage;
     private String appUrl;

@@ -7,18 +7,22 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pageObjects.PageGenerator;
 import pageObjects.orangeHRM.*;
+import pageObjects.orangeHRM.editNavigation.ContactDetailPageObject;
+import pageObjects.orangeHRM.editNavigation.DependentsPageObject;
+import pageObjects.orangeHRM.editNavigation.JobPageObject;
 import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
 
 
-public class Login_06_Page_Manager_III extends BaseTest {
+public class Level_08_Page_Navigator extends BaseTest {
 
     @Parameters({"appUrl", "browser"})
     @BeforeClass
     public void beforeClass(String browser, String appUrl) {
         driver = getBrowserDriver(browser, appUrl);
 
-        loginPage = PageGeneratorManager.getLoginPage(driver);
+        loginPage = PageGenerator.getPage(LoginPageObject.class,driver);
         adminUserName = "Admin";
         adminPassword = "admin123";
         employeeFirstName = "John";
@@ -54,6 +58,23 @@ public class Login_06_Page_Manager_III extends BaseTest {
         Assert.assertEquals(personalDetailPage.getEmployeeIDTextboxValue(), employeeID);
     }
 
+    @Test
+    public void Employee_03_Page_Navigator(){
+        contactDetailPage=personalDetailPage.openContactDetailPage();
+
+        jobPage=contactDetailPage.openJobPage();
+
+        dependentsPage=jobPage.openDependentPage();
+
+        personalDetailPage=dependentsPage.openPersonalDetailPage();
+
+        jobPage=personalDetailPage.openJobPage();
+
+        contactDetailPage=jobPage.openContactDetailPage();
+
+        dependentsPage=contactDetailPage.openDependentPage();
+    }
+
 
     @AfterClass
     public void afterClass() {
@@ -66,5 +87,8 @@ public class Login_06_Page_Manager_III extends BaseTest {
     private EmployeeListPageObject employeeListPage;
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailPageObject personalDetailPage;
+    private ContactDetailPageObject contactDetailPage;
+    private JobPageObject jobPage;
+    private DependentsPageObject dependentsPage;
     private String employeeID, adminUserName, adminPassword, employeeFirstName, employeeLastName;
 }

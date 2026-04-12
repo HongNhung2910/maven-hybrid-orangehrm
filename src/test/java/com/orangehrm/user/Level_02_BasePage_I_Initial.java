@@ -1,11 +1,8 @@
 package com.orangehrm.user;
 
 import core.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -13,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Login_02_BasePage_I_Initial {
+public class Level_02_BasePage_I_Initial {
     private WebDriver driver;
     private BasePage basePage;
     private String appUrl="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";

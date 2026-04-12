@@ -13,54 +13,56 @@ import pageObjects.orangeHRM.EmployeeListPageObject;
 import pageObjects.orangeHRM.LoginPageObject;
 import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
 
+public class Level_04_Page_Object extends BaseTest {
 
-public class Login_06_Page_Manager_II extends BaseTest {
-
-    @Parameters({"appUrl", "browser"})
+    @Parameters({"appUrl","browser"})
     @BeforeClass
-    public void beforeClass(String browser, String appUrl) {
-        driver = getBrowserDriver(browser, appUrl);
+    public void beforeClass(String appURL, String browserName){
+      driver=getBrowserDriver(appURL,browserName);
+      loginPage=new LoginPageObject(driver);
 
-        loginPage = new LoginPageObject(driver);
-        adminUserName = "Admin";
-        adminPassword = "admin123";
-        employeeFirstName = "John";
-        employeeLastName = "Terry";
+      adminUserName ="automationfc";
+      adminPassword ="Auto@2025";
+      employeeFirstName = "John";
+      employeeLastName = "Terry";
     }
 
+
     @Test
-    public void Employee_01_CreateNewEmployee() {
+    public void Employee_01_CreateNewEmployee(){
         loginPage.enterToUsernameTextbox(adminUserName);
         loginPage.enterToPasswordTextbox(adminPassword);
-        dashboardPage = loginPage.clickToLoginButton();
 
+        loginPage.clickToLoginButton();
+        dashboardPage= new DashboardPageObject(driver);
         Assert.assertTrue(dashboardPage.isLoadingSpinnerDisappear(driver));
-        dashboardPage.sleepInSecond(2);
 
-        employeeListPage = dashboardPage.clickToPIMModule();
+        dashboardPage.clickToPIMModule();
+        employeeListPage=new EmployeeListPageObject(driver);
         Assert.assertTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
 
-        addEmployeePage = employeeListPage.clickToAddEmployeeButton();
+        employeeListPage.clickToAddEmployeeButton();
+        addEmployeePage=new AddEmployeePageObject(driver);
         Assert.assertTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
 
         addEmployeePage.enterToFirstNameTextbox(employeeFirstName);
         addEmployeePage.enterToLastNameTextbox(employeeLastName);
-        employeeID = addEmployeePage.getEmployeeID();
+        employeeID= addEmployeePage.getEmployeeID();
 
-        personalDetailPage = addEmployeePage.clickToSaveButton();
-
+       // addEmployeePage=clickSaveToButton();
+        personalDetailPage=new PersonalDetailPageObject(driver);
         Assert.assertTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
-        personalDetailPage.sleepInSecond(2);
 
-        Assert.assertEquals(personalDetailPage.getFirstNameTextboxValue(), employeeFirstName);
-        Assert.assertEquals(personalDetailPage.getLastNameTextboxValue(), employeeLastName);
-        Assert.assertEquals(personalDetailPage.getEmployeeIDTextboxValue(), employeeID);
+        Assert.assertEquals(personalDetailPage.getFirstNameTextboxValue(),employeeFirstName);
+        Assert.assertEquals(personalDetailPage.getLastNameTextboxValue(),employeeLastName);
+        Assert.assertEquals(personalDetailPage.getEmployeeIDTextboxValue(),employeeID);
     }
 
 
+
     @AfterClass
-    public void afterClass() {
-        //driver.quit();
+    public void afterClass(){
+        driver.quit();
     }
 
     private WebDriver driver;
@@ -69,5 +71,5 @@ public class Login_06_Page_Manager_II extends BaseTest {
     private EmployeeListPageObject employeeListPage;
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailPageObject personalDetailPage;
-    private String employeeID, adminUserName, adminPassword, employeeFirstName, employeeLastName;
+        private String employeeID,adminUserName,adminPassword,employeeFirstName,employeeLastName;;
 }

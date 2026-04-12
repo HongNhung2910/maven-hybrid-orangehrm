@@ -15,7 +15,7 @@ import pageObjects.orangeHRM.editNavigation.JobPageObject;
 import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
 
 
-public class Login_07_Switch_Page extends BaseTest {
+public class Level_07_Switch_Page extends BaseTest {
 
     @Parameters({"appUrl", "browser"})
     @BeforeClass
@@ -59,7 +59,9 @@ public class Login_07_Switch_Page extends BaseTest {
     }
 
     @Test
+
     public void Employee_02_Switch_Page(){
+        /*
         contactDetailPage=personalDetailPage.openContactDetailPage(driver);
 
         jobPage=contactDetailPage.openJobPage(driver);
@@ -73,6 +75,8 @@ public class Login_07_Switch_Page extends BaseTest {
         contactDetailPage=jobPage.openContactDetailPage(driver);
 
         dependentsPage=contactDetailPage.openDependentPage(driver);
+
+     */
     }
 
 
