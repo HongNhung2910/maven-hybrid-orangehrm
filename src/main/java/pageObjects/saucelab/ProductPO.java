@@ -27,12 +27,13 @@ public class ProductPO extends BasePage {
 
     public boolean isProductNameSortAscending() {
 
-        List<WebElement> productName=getListElement(driver,ProductPageUI.PRODUCT_NAME_TEXT);
+        List<WebElement> productName=getListElement(driver, ProductPageUI.PRODUCT_NAME_TEXT);
 
         //Mảng A
         ArrayList<String> productList = new ArrayList<String>();
 
         for (WebElement product : productName){
+            System.out.println(product.getText());
             productList.add(product.getText());
         }
 
@@ -44,7 +45,6 @@ public class ProductPO extends BasePage {
 
         Collections.sort(sortedList);
 
-
         return  productList.equals(sortedList);
     }
 
@@ -54,6 +54,7 @@ public class ProductPO extends BasePage {
         ArrayList<String> productList = new ArrayList<String>();
 
         for (WebElement product : productName){
+            System.out.println(product.getText());
             productList.add(product.getText());
         }
 
@@ -77,6 +78,7 @@ public class ProductPO extends BasePage {
 
         //Vong lao lay productName lưu vào A
         for (WebElement product : productPrice){
+            System.out.println(product.getText());
             productList.add(Float.parseFloat(product.getText().replace("$","")));
         }
 
@@ -97,6 +99,7 @@ public class ProductPO extends BasePage {
        ArrayList<Float> productList = new ArrayList<Float>();
 
        for (WebElement product : productPrice){
+           System.out.println(product.getText());
             productList.add(Float.parseFloat(product.getText().replace("$","")));
         }
 
