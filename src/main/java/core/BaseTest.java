@@ -3,41 +3,79 @@ package core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeDriverService;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverService;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.GeckoDriverService;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
 
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Random;
+
+import static core.BrowserList.HEAD_CHROME;
 
 public class BaseTest {
     private WebDriver driver;
 
-    protected WebDriver getBrowserDriver(String appURL,String browserName){
-        switch (browserName){
-            case "Firefox":
-                driver=new FirefoxDriver();
+    protected WebDriver getBrowserDriver( String appUrl,String browserName){
+        BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
+
+        Path path=  null;
+        File extensionFilePath= null;
+        switch (browser){
+            case FIREFOX:
+                FirefoxDriverService fService= new GeckoDriverService.Builder().withLogOutput(System.out).
+                        withLogFile(new File (GlobalConstants.BROWSER_LOG_PATH+ "FireFoxLog.log")).build();
+                driver =new FirefoxDriver(fService);
                 break;
-            case "Chrome":
-                driver=new ChromeDriver();
+            case CHROME:
+                ChromeDriverService cService= new ChromeDriverService.Builder().withLogOutput(System.out).
+                        withLogFile(new File (GlobalConstants.BROWSER_LOG_PATH+ "ChromeLog.log")).build();
+                driver = new ChromeDriver(cService);
                 break;
-            case "Edge":
-                driver=new EdgeDriver();
+            case EDGE:
+
+                driver = new EdgeDriver();
+                break;
+            case HEAD_CHROME:
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("window-size=1920x1080");
+                driver = new ChromeDriver(chromeOptions);
+                break;
+            case HEAD_FIREFOX:
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--headless");
+                firefoxOptions.addArguments("window-size=1920x1080");
+                driver = new FirefoxDriver(firefoxOptions);
+                break;
+            case HEAD_EDGE:
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--headless");
+                edgeOptions.addArguments("window-size=1920x1080");
+                driver = new EdgeDriver(edgeOptions);
                 break;
             default:
-                throw new RuntimeException("Browser is not valid");
+                throw new RuntimeException("Browser name is not valid!");
         }
-        driver.get(appURL);
+
+        driver.get(appUrl);
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();
         return driver;
        }
 
     protected void closeBrowser() {
-        if (!(null == driver)) {
+        if (driver != null) {
             driver.quit();
         }
     }
