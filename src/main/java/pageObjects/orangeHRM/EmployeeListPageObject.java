@@ -19,4 +19,9 @@ public class EmployeeListPageObject extends BasePage {
       //  return PageGeneratorManager.getAddEmployeePage(driver);
         return PageGenerator.getPage(AddEmployeePageObject.class,driver);
     }
+
+    public void clickToEditButton() {
+        waitElementClickable(driver,EmployeeListPageUI.EDIT_EMPLOYEE_BUTTON);
+        clickToElement(driver,EmployeeListPageUI.EDIT_EMPLOYEE_BUTTON);
+    }
 }

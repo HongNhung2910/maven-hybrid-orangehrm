@@ -1,5 +1,6 @@
 package pageObjects.orangeHRM.editNavigation;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import pageUIs.orangeHRM.editNavigation.PersonalDetailPageUI;
 
@@ -26,4 +27,22 @@ public class PersonalDetailPageObject extends EditNavigatorPageObject {
         return getElementDOMProperty(driver,PersonalDetailPageUI.EMPLOYEE_ID_TEXTBOX,"value");
     }
 
+    public void clickToProfileImage() {
+        waitElementClickable(driver,PersonalDetailPageUI.PROFILE_IMAGE);
+        clickToElement(driver,PersonalDetailPageUI.PROFILE_IMAGE);
+    }
+
+    public String getErrorMessageAtProfileImage() {
+        waitElementVisible(driver,PersonalDetailPageUI.PROFILE_IMAGE_ERROR_MSG);
+        return  getElementText(driver,PersonalDetailPageUI.PROFILE_IMAGE_ERROR_MSG);
+
+    }
+
+    public Dimension getProfileNaturalImageSize() {
+        waitElementVisible(driver, PersonalDetailPageUI.EDIT_PROFILE_IMAGE);
+        int x =Integer.parseInt(getElementDOMProperty(driver,PersonalDetailPageUI.EDIT_PROFILE_IMAGE,"naturalWidth"));
+        int y =Integer.parseInt(getElementDOMProperty(driver,PersonalDetailPageUI.EDIT_PROFILE_IMAGE,"naturalHeight"));
+        return new Dimension(x,y);
+
+    }
 }

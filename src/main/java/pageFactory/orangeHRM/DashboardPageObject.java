@@ -30,4 +30,7 @@ public class DashboardPageObject extends BasePageFactory {
     public boolean isLoadingSpinnerDisappear(){
         return waitListElementInvisible(driver,loadingSpinner);
     }
+    public boolean isLoadingSpinnerDisappear(WebDriver driver){
+        return waitListElementInvisible(driver,loadingSpinner);
+    }
 }

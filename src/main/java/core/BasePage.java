@@ -80,6 +80,14 @@ public class BasePage {
         }
     }
 
+    public void sleepInMilisecond(int timeInMilisecond) {
+        try {
+            Thread.sleep(timeInMilisecond);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void switchToWindowByID(WebDriver driver, String windowID) {
         Set<String> allWindows = driver.getWindowHandles();
 
@@ -166,7 +174,7 @@ public class BasePage {
         return driver.findElement(getByLocator(castParameter(locator,restValue)));
     }
 
-    private List<WebElement> getListElement(WebDriver driver, String locator) {
+    protected List<WebElement> getListElement(WebDriver driver, String locator) {
         return driver.findElements(getByLocator(locator));
     }
 
@@ -180,7 +188,10 @@ public class BasePage {
     public void sendKeyToElement(WebDriver driver, String locator, String keyToSend) {
         getWebElement(driver, locator).sendKeys(keyToSend);
     }
-    public void sendkeyToElement(WebDriver driver, String locator, String keyToSend,String...restValue) {
+    public void sendkeyToElement(WebDriver driver, String locator, CharSequence keyToSend,String...restValue) {
+        getWebElement(driver,castParameter(locator,restValue)).sendKeys(Keys.chord(Keys.CONTROL,"a"));
+        getWebElement(driver,castParameter(locator,restValue)).sendKeys(Keys.chord(Keys.DELETE));
+        sleepInMilisecond(500);
         getWebElement(driver, castParameter(locator,restValue)).sendKeys(keyToSend);
     }
 
@@ -190,7 +201,6 @@ public class BasePage {
     public void selectItemInDropDown(WebDriver driver, String locator, String valueItem,String...restValue) {
         new Select(getWebElement(driver, castParameter(locator,restValue))).selectByVisibleText(valueItem);
     }
-
     public String getSelectedItemInDropdown(WebDriver driver, String locator) {
         return new Select(getWebElement(driver, locator)).getFirstSelectedOption().getText();
     }
@@ -250,6 +260,14 @@ public class BasePage {
 
     public String getElementText(WebDriver driver, String locator) {
         return getWebElement(driver, locator).getText();
+    }
+
+    public Dimension getElementSize(WebDriver driver, String locator){
+        return getWebElement(driver, locator).getSize();
+    }
+
+    public Dimension getElementSize(WebDriver driver, String locator,String... restValue){
+        return getWebElement(driver,castParameter(locator,restValue)).getSize();
     }
 
     public String getElementCss(WebDriver driver, String locator, String propertyName) {
@@ -524,6 +542,8 @@ public class BasePage {
         }
 
         getWebElement(driver, BasePageUI.UPLOAD_FILE_TYPE).sendKeys(fullFileName.trim());
+        sleepInSecond(1);
+
     }
 
     public boolean isLoadingSpinnerDisappear(WebDriver driver){
@@ -578,6 +598,12 @@ public class BasePage {
         waitElementVisible(driver, BasePageUI.TEXTBOX_BY_NAME,textboxNameAttribute);
         sendkeyToElement(driver,BasePageUI.TEXTBOX_BY_NAME,valueToSendkey, textboxNameAttribute);
     }
+    public void clearToTextboxByLabel(WebDriver driver, String textboxLabel){
+        waitElementVisible(driver, BasePageUI.TEXTBOX_BY_LABEL,textboxLabel);
+        sendkeyToElement(driver,BasePageUI.TEXTBOX_BY_LABEL,Keys.chord(Keys.CONTROL,"a"),textboxLabel);
+       // sendkeyToElement(driver,BasePageUI.TEXTBOX_BY_LABEL,Keys.DELETE,textboxLabel);
+
+    }
 
     public void clickToButtonByText(WebDriver driver, String buttonText){
         waitElementClickable(driver,BasePageUI.BUTTON_BY_TEXT,buttonText);
@@ -611,8 +637,6 @@ public class BasePage {
         waitElementInvisible(driver,BasePageUI.MODULE_BY_TEXT_IN_MENU_ITEM,moduleName);
         return isElementDisplayed(driver,BasePageUI.MODULE_BY_TEXT_IN_MENU_ITEM,moduleName);
     }
-
-
 
     public void selectDropdownByLabel(WebDriver driver, String labelName, String valueToSelect) {
         waitElementClickable(driver,BasePageUI.PARENT_DROPDOWN_BY_LABEL,labelName);
